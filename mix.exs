@@ -29,7 +29,8 @@ defmodule ExAws.EventBridge.MixProject do
       {:ex_aws, "~> 2.1"},
       {:jason, "~> 1.1"},
       {:hackney, "~> 1.1"},
-      {:dialyxir, "~> 1.0", only: [:dev], runtime: false}
+      {:dialyxir, "~> 1.0", only: [:dev], runtime: false},
+      {:ex_doc, ">= 0.0.0", only: :dev, runtime: false}
     ]
   end
 
