@@ -36,7 +36,7 @@ defmodule ExAws.EventBridge.MixProject do
   defp package() do
     [
       description: "EventBridge service module for ex_aws",
-      files: ["lib", "config", "mix.exs", "README*", "CHANGELOG*"],
+      files: ["lib", "mix.exs", "README*", "CHANGELOG*"],
       maintainers: ["Nolan Davidson"],
       licenses: ["MIT"],
       links: %{
