@@ -17,11 +17,28 @@ defmodule ExAws.EventBridge do
 
   @target_prefix "AWSEvents"
 
+  @doc """
+  List event buses
+
+  ## Example
+  ```
+  EventBridge.list_event_buses() |> ExAws.request()
+  EventBridge.list_event_buses(name_prefix: "my_prefix") |> ExAws.request()
+  ```
+  """
   @spec list_event_buses(opts :: Keyword.t()) :: JSON.t()
   def list_event_buses(opts \\ []) do
     request(:list_event_buses, opts_to_data(opts))
   end
 
+  @doc """
+  Create an event bus
+
+  ## Example
+  ```
+  EventBridge.create_event_bus("new-bus") |> ExAws.request()
+  ```
+  """
   @spec create_event_bus(name :: binary, opts :: Keyword.t()) :: JSON.t()
   def create_event_bus(name, opts \\ []) do
     data =
@@ -31,6 +48,15 @@ defmodule ExAws.EventBridge do
     request(:create_event_bus, data)
   end
 
+  @doc """
+  Delete an event bus
+
+  ## Example
+  ```
+  EventBridge.delete_event_bus("old-bus") |> ExAws.request()
+  ```
+  """
+  @spec delete_event_bus(name :: binary, opts :: Keyword.t()) :: JSON.t()
   def delete_event_bus(name, opts \\ []) do
     data =
       %{"Name" => name}
@@ -39,6 +65,15 @@ defmodule ExAws.EventBridge do
     request(:delete_event_bus, data)
   end
 
+  @doc """
+  Describe an event bus
+
+  ## Example
+  ```
+  EventBridge.describe_event_bus("my-bus") |> ExAws.request()
+  ```
+  """
+  @spec describe_event_bus(name :: binary, opts :: Keyword.t()) :: JSON.t()
   def describe_event_bus(name, opts \\ []) do
     data =
       %{"Name" => name}
