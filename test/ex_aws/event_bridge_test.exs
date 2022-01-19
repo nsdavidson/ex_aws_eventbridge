@@ -43,6 +43,44 @@ defmodule ExAws.EventBridgeTest do
     assert request.headers == expected_headers("DescribeEventBus")
   end
 
+  test "put_events/2" do
+    events = [
+      %{
+        detail: "{\"key\":\"value\"}",
+        detail_type: "thing1",
+        event_bus_name: "default",
+        source: "the_place"
+      },
+      %{
+        detail: "{\"key2\":\"value2\"}",
+        detail_type: "thing2",
+        event_bus_name: "default",
+        source: "the_good_place"
+      }
+    ]
+
+    expected_data = %{
+      "Entries" => [
+        %{
+          "Detail" => "{\"key\":\"value\"}",
+          "DetailType" => "thing1",
+          "EventBusName" => "default",
+          "Source" => "the_place"
+        },
+        %{
+          "Detail" => "{\"key2\":\"value2\"}",
+          "DetailType" => "thing2",
+          "EventBusName" => "default",
+          "Source" => "the_good_place"
+        }
+      ]
+    }
+
+    request = EventBridge.put_events(events)
+    assert request.data == expected_data
+    assert request.headers == expected_headers("PutEvents")
+  end
+
   defp expected_headers(operation) do
     [
       {"x-amz-target", "AWSEvents.#{operation}"},
