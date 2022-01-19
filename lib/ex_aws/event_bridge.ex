@@ -82,6 +82,15 @@ defmodule ExAws.EventBridge do
     request(:describe_event_bus, data)
   end
 
+  @spec put_events(event_list :: List.t(), opts :: Keyword.t()) :: JSON.t()
+  def put_events(event_list, opts \\ []) do
+    data =
+      %{"Entries" => Enum.map(event_list, fn event -> opts_to_data(event) end)}
+      |> Map.merge(opts_to_data(opts))
+
+    request(:put_events, data)
+  end
+
   defp opts_to_data(_opts = []), do: %{}
 
   defp opts_to_data(opts) do
